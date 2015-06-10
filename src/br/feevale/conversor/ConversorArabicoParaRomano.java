@@ -1,7 +1,8 @@
 package br.feevale.conversor;
 
-public class ConversorArabicoParaRomano {
+public class ConversorArabicoParaRomano implements Conversor {
 
+	@Override
 	public String converte(String arabico) {
 		String romano = null;
 		
