@@ -3,18 +3,26 @@ package br.feevale.conversor;
 public class ConversorArabicoParaRomano {
 
 	public String converte(String arabico) {
-		if (arabico.length() == 1) {
-			return converteUltimaCasa(arabico.charAt(0));
-		} else if (arabico.length() == 2) {
-			return converteSegundaCasa(arabico.charAt(0)) + converteUltimaCasa(arabico.charAt(1));
-		} else if (arabico.length() == 3) {
-			return converteTerceiraCasa(arabico.charAt(0)) + converteSegundaCasa(arabico.charAt(1)) + converteUltimaCasa(arabico.charAt(2));
+		String romano = null;
+		
+		if (arabico.length() >= 1) {
+			romano = converteUltimaCasa(arabico);
 		}
 		
-		return null;
+		if (arabico.length() >= 2) {
+			romano = converteSegundaCasa(arabico) + romano;
+		} 
+		
+		if (arabico.length() == 3) {
+			romano = converteTerceiraCasa(arabico) + romano;
+		}
+		
+		return romano;
 	}
 
-	protected String converteUltimaCasa(char digito) {
+	protected String converteUltimaCasa(String arabico) {
+		char digito = arabico.charAt(arabico.length() - 1);
+		
 		switch (digito) {
 		case '1': return "I";
 		case '2': return "II";
@@ -29,7 +37,9 @@ public class ConversorArabicoParaRomano {
 		}
 	}
 	
-	private String converteSegundaCasa(char digito) {
+	private String converteSegundaCasa(String arabico) {
+		char digito = arabico.charAt(arabico.length() - 2);
+		
 		switch (digito) {
 		case '1': return "X";
 		case '2': return "XX";
@@ -44,7 +54,9 @@ public class ConversorArabicoParaRomano {
 		}
 	}
 	
-	private String converteTerceiraCasa(char digito) {
+	private String converteTerceiraCasa(String arabico) {
+		char digito = arabico.charAt(arabico.length() - 3);
+		
 		switch (digito) {
 		case '1': return "C";
 		case '2': return "CC";
